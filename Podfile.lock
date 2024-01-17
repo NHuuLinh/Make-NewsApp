@@ -1,0 +1,40 @@
+PODS:
+  - Alamofire (5.7.1)
+  - GoogleMaps (8.2.0):
+    - GoogleMaps/Maps (= 8.2.0)
+  - GoogleMaps/Base (8.2.0)
+  - GoogleMaps/Maps (8.2.0):
+    - GoogleMaps/Base
+  - KeychainSwift (20.0.0)
+  - Kingfisher (7.9.1)
+  - MBProgressHUD (1.2.0)
+  - ObjectMapper (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - GoogleMaps
+  - KeychainSwift (~> 20.0)
+  - Kingfisher (~> 7.0)
+  - MBProgressHUD (~> 1.2.0)
+  - ObjectMapper
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - GoogleMaps
+    - KeychainSwift
+    - Kingfisher
+    - MBProgressHUD
+    - ObjectMapper
+
+SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  GoogleMaps: 081f2547b60a1c0870a8f49166a653900e5055d5
+  KeychainSwift: 0ce6a4d13f7228054d1a71bb1b500448fb2ab837
+  Kingfisher: 1d14e9f59cbe19389f591c929000332bf70efd32
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
+
+PODFILE CHECKSUM: 4057ba8e788b36959c7c55cc644ff0a2054ba09f
+
+COCOAPODS: 1.12.1
