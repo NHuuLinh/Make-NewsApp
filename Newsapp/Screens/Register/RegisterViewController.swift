@@ -12,8 +12,13 @@ import MBProgressHUD
 
 protocol RegisterViewControllerDisplay {
     func RegisterFailure(message: String)
-    func registerValidateFailure(field: RegisterFormField, message: String?)
     func showLoading(isShow: Bool)
+    func emailValidColor()
+    func passwordValidColor()
+    func nameValidColor()
+    func emailErrorColor()
+    func passWordErrorColor()
+    func nameErrorColor()
 }
 enum RegisterFormField {
     case email
@@ -22,6 +27,7 @@ enum RegisterFormField {
 
 
 class RegisterViewController: UIViewController, RegisterViewControllerDisplay {
+    
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var errorView: UIView!
     @IBOutlet weak var emailerrorTF: UITextField!
@@ -44,10 +50,13 @@ class RegisterViewController: UIViewController, RegisterViewControllerDisplay {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        registerPresenter = RegisterPresenterImpl(authRepository: AuthRepositoryImpl(authService: AuthAPIServiceImpl()), RegisterVC: self)
         emailTF.addTarget(self, action: #selector(emailTextFieldDidChange), for: .editingChanged)
+        emailValidColor()
+        passwordValidColor()
+        nameValidColor()
     }
-    private func setupView(){
+    func emailValidColor(){
         clearBtn.isHidden = true
         errorView.isHidden = true
         errorViewHieght.constant = 0
@@ -55,20 +64,100 @@ class RegisterViewController: UIViewController, RegisterViewControllerDisplay {
         emailTextView.layer.borderWidth = 2
         emailTextView.layer.cornerRadius = 6
         emailTextView.layer.borderColor = UIColor(red: 0.31, green: 0.29, blue: 0.4, alpha: 1).cgColor
-        
+    }
+    func passwordValidColor(){
         passwordErorrView.isHidden = true
         passwordErrorViewHieght.constant = 0
         passwordErorrView.layoutIfNeeded()
         passwordTextView.layer.borderWidth = 2
         passwordTextView.layer.cornerRadius = 6
         passwordTextView.layer.borderColor = UIColor(red: 0.31, green: 0.29, blue: 0.4, alpha: 1).cgColor
-        
+    }
+    func nameValidColor(){
         nameErorrView.isHidden = true
+        nameTextView.backgroundColor = .clear
         nameErrorViewHieght.constant = 0
+        nameErorrView.layer.borderWidth = 2
+        nameErorrView.layer.cornerRadius = 6
         nameErorrView.layoutIfNeeded()
-        nameTextView.layer.borderWidth = 2
-        nameTextView.layer.cornerRadius = 6
-        nameTextView.layer.borderColor = UIColor(red: 0.31, green: 0.29, blue: 0.4, alpha: 1).cgColor
+
+    }
+    func emailErrorColor() {
+        errorView.isHidden = false
+        emailTextView.backgroundColor = UIColor(red: 1, green: 0.95, blue: 0.97, alpha: 1)
+        errorViewHieght.constant = 21
+        emailTextView.layoutIfNeeded()
+    }
+    func passWordErrorColor(){
+        passwordErorrView.isHidden = false
+        passwordErrorViewHieght.constant = 21
+        passwordErorrView.layoutIfNeeded()
+        passwordTextView.layer.borderWidth = 2
+        passwordTextView.layer.cornerRadius = 6
+        passwordTextView.backgroundColor = UIColor(red: 1, green: 0.95, blue: 0.97, alpha: 1)
+
+    }
+    func nameErrorColor(){
+        nameErorrView.isHidden = false
+        nameErorrView.layoutIfNeeded()
+        nameErorrView.layer.borderWidth = 2
+        nameErorrView.layer.cornerRadius = 6
+        nameTextView.backgroundColor = UIColor(red: 1, green: 0.95, blue: 0.97, alpha: 1)
+        nameErrorViewHieght.constant = 21
+        nameErorrView.layoutIfNeeded()
+    }
+
+    func emailValid(email: String) -> (String){
+        var emailErrorMsg = ""
+        if email.isEmpty {
+            emailErrorMsg = "Email can't empty"
+            emailErrorColor()
+            return emailErrorMsg
+        }
+        else if !registerPresenter.isValidEmail(email) {
+            emailErrorMsg = "Email invalid"
+            emailErrorColor()
+            return emailErrorMsg
+        }
+        else {
+            emailErrorMsg = ""
+            emailValidColor()
+            return emailErrorMsg
+        }
+    }
+    func passwordValid(password: String) -> (String){
+        var passwordErrorMsg = ""
+        if password.isEmpty {
+            passwordErrorMsg = "password can't empty"
+            passWordErrorColor()
+            return passwordErrorMsg
+        } else if password.count < 6 {
+            passwordErrorMsg = "password need more than 6 digit"
+            passWordErrorColor()
+            return passwordErrorMsg
+        }
+        else {
+            passwordErrorMsg = ""
+            passwordValidColor()
+            return passwordErrorMsg
+        }
+    }
+    func nameValid(name: String) -> (String){
+        var passwordErrorMsg = ""
+        if name.isEmpty {
+            passwordErrorMsg = "password can't empty"
+            nameErrorColor()
+            return passwordErrorMsg
+        } else if name.count < 6 {
+            passwordErrorMsg = "password need more than 6 digit"
+            nameErrorColor()
+            return passwordErrorMsg
+        }
+        else {
+            passwordErrorMsg = ""
+            nameValidColor()
+            return passwordErrorMsg
+        }
     }
     @objc private func emailTextFieldDidChange() {
         if let emailText = emailTF.text, !emailText.isEmpty {
@@ -84,6 +173,16 @@ class RegisterViewController: UIViewController, RegisterViewControllerDisplay {
             clearBtn.isHidden = true
         }
     }
+    
+    @IBAction func inputĐiChanged(_ sender: Any) {
+        let email = emailTF.text ?? ""
+        let password = passWordTF.text ?? ""
+        let name = nickNmaeTF.text ?? ""
+        emailerrorTF.text = emailValid(email: email)
+        errorPW.text = passwordValid(password: password)
+        print("\(errorPW.text)")
+        nameErorText.text = nameValid(name: name)
+    }
     @IBAction func onClearButton(_ sender: Any) {
         emailTF.text = ""
         clearBtn.isHidden = true
@@ -92,92 +191,15 @@ class RegisterViewController: UIViewController, RegisterViewControllerDisplay {
     @IBAction func nameClearButton(_ sender: Any) {
         nickNmaeTF.text = ""
         nameClearBtn.isHidden = true
-        
     }
-    func emailErrorColor() {
-        errorView.isHidden = false
-        emailTextView.backgroundColor = UIColor(red: 1, green: 0.95, blue: 0.97, alpha: 1)
-        errorViewHieght.constant = 21
-        emailTextView.layoutIfNeeded()
-    }
-    func passWordErrorColor(){
-        passwordErorrView.isHidden = false
-        passwordErorrView.layoutIfNeeded()
-        passwordTextView.backgroundColor = UIColor(red: 1, green: 0.95, blue: 0.97, alpha: 1)
-        passwordErrorViewHieght.constant = 21
-    }
-    func registerValidateFailure(field: RegisterFormField, message: String?) {
-        switch field {
-        case .email:
-            emailerrorTF.isHidden = false
-            emailerrorTF.text = message
-        case .password:
-            errorPW.isHidden = false
-            errorPW.text = message
-        }
-    }
-    func onHandleValidateForm(email: String, password: String, name: String) -> Bool {
-        var isEmailValid = false
-        if email.isEmpty {
-            emailerrorTF.text = "không thể để trống email"
-            emailErrorColor()
-        } else if (registerPresenter.validateForm(email: email, password: password)) {
-            emailerrorTF.text = "email không hợp lệ"
-            emailErrorColor()
-        }
-        else {
-            isEmailValid = true
-            errorView.isHidden = true
-            emailTextView.backgroundColor = .clear
-            errorViewHieght.constant = 0
-            emailTextView.layoutIfNeeded()
-        }
-        var isPasswordValid = false
-        if password.isEmpty {
-            errorPW.text = "không thể để trống password"
-            passWordErrorColor()
-        }else if password.count < 6 {
-            errorPW.text = "mật khẩu dài hơn 6 kí tự"
-            passWordErrorColor()
-        }else if password.count > 40 {
-            errorPW.text = "mật khẩu không dài hơn 40 kí tự"
-            passWordErrorColor()
-        } else {
-            passwordErorrView.isHidden = true
-            passwordErorrView.layoutIfNeeded()
-            passwordTextView.backgroundColor = .clear
-            passwordErrorViewHieght.constant = 0
-            isPasswordValid = true
-        }
-        
-        var isNameValid = false
-        if name.isEmpty {
-            nameErorText.text = "không thể để trống tên"
-            nameErorrView.isHidden = false
-            nameErorrView.layoutIfNeeded()
-            nameTextView.backgroundColor = UIColor(red: 1, green: 0.95, blue: 0.97, alpha: 1)
-            nameErrorViewHieght.constant = 21
-            nameErorrView.layoutIfNeeded()
-        } else {
-            nameErorrView.isHidden = true
-            nameErorrView.layoutIfNeeded()
-            nameTextView.backgroundColor = .clear
-            nameErrorViewHieght.constant = 0
-            isNameValid = true
-        }
-        let isValid = isEmailValid && isPasswordValid && isNameValid
-        return isValid
-    }
+
     @IBAction func onHandleButton(_ sender: Any) {
         errorView.isHidden = true
         clearBtn.isHidden = true
-        let email = emailTF.text ?? "";
-        let password = passWordTF.text ?? "";
-        let name = nickNmaeTF.text ?? "";
-        let isValid = onHandleValidateForm(email: email, password: password, name: name)
-        guard isValid else {
-            return
-        }
+        let email = emailTF.text ?? ""
+        let password = passWordTF.text ?? ""
+        let name = nickNmaeTF.text ?? ""
+        registerPresenter.register(email: email, password: password, name: name)
     }
     @IBAction func Loginbutton(_ sender: Any) {
         navigationController?.popToRootViewController(animated: true)

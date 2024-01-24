@@ -28,7 +28,7 @@ class LoginPresenterImpl: LoginPresenter {
         self.loginVC = loginVC
         self.authRepository = authRepository
     }
-    private func isValidEmail(_ email: String) -> Bool {
+    func isValidEmail(_ email: String) -> Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailTest.evaluate(with: email)
@@ -38,27 +38,26 @@ class LoginPresenterImpl: LoginPresenter {
      */
     func validateForm(email: String, password: String) -> Bool {
         var isEmailValid = false
-//        var emailErrorMsg: String?
-//        loginVC.loginValidateFailure(field: .email,
-//                                     message: emailErrorMsg)
+        var emailErrorMsg: String?
+        loginVC.loginValidateFailure(field: .email,
+                                     message: emailErrorMsg)
         if email.isEmpty {
-//            emailErrorMsg = "Email can't empty"
+            emailErrorMsg = "Email can't empty"
             loginVC.loginValidateFailure(field: .email,
                                          message: "Email can't empty")
             loginVC.emailErrorColor()
         }
         else if (!isValidEmail(email)) {
-//            emailErrorMsg = "Email invalid"
+            emailErrorMsg = "Email invalid"
             loginVC.loginValidateFailure(field: .email,
                                          message: "Email invalid")
             loginVC.emailErrorColor()
         }
         else {
-//            emailErrorMsg = nil
+            emailErrorMsg = nil
             isEmailValid = true
             loginVC.emailValid()
         }
-
         var isPasswordValid = false
         if password.isEmpty {
             loginVC.loginValidateFailure(field: .password,

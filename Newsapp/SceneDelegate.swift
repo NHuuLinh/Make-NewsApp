@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if AuthService.share.isLoggedIn {
                 gotoMainViewController()
             } else {
-                gotoMainViewController()
+                gotoLoginCach1()
             }
         }else {
             gotoOnBroad()

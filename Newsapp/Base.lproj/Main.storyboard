@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lpc-kO-CxN">
-                                        <rect key="frame" x="24.000000000000007" y="24" width="123.66666666666669" height="72"/>
+                                        <rect key="frame" x="23.999999999999993" y="24" width="109.33333333333331" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="72" id="fUO-5Q-BQl"/>
                                         </constraints>
@@ -44,7 +44,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Again" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsS-F2-k4Y">
-                                        <rect key="frame" x="24" y="96" width="147.33333333333334" height="72"/>
+                                        <rect key="frame" x="24" y="96" width="122" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="72" id="5SY-fD-juW"/>
                                         </constraints>
@@ -374,16 +374,16 @@ been missed</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnY-um-XsV">
-                                        <rect key="frame" x="68.666666666666657" y="657" width="276.66666666666674" height="34.333333333333371"/>
+                                        <rect key="frame" x="79" y="657" width="256" height="34.333333333333371"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cff-lo-423">
-                                                <rect key="frame" x="0.0" y="0.0" width="186.66666666666666" height="34.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="166" height="34.333333333333336"/>
                                                 <fontDescription key="fontDescription" name="Poppins-Light" family="Poppins" pointSize="14"/>
                                                 <color key="textColor" red="0.30588235294117649" green="0.29411764705882354" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b7g-2u-wZa">
-                                                <rect key="frame" x="186.66666666666669" y="0.0" width="90" height="34.333333333333336"/>
+                                                <rect key="frame" x="166" y="0.0" width="90" height="34.333333333333336"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="90" id="a5e-ip-a3H"/>
                                                 </constraints>
@@ -718,7 +718,7 @@ been missed</string>
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJh-as-wcH">
-                                        <rect key="frame" x="24" y="24" width="142.66666666666666" height="72"/>
+                                        <rect key="frame" x="24" y="24" width="122" height="72"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="72" id="e4O-J4-9Q9"/>
                                         </constraints>
@@ -787,6 +787,9 @@ been missed</string>
                                                                 <color key="textColor" red="0.019607843137254902" green="0.019607843137254902" blue="0.019607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="inputĐiChanged:" destination="dn5-Tb-oTH" eventType="editingChanged" id="URu-yv-MSf"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -881,6 +884,9 @@ been missed</string>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="inputĐiChanged:" destination="dn5-Tb-oTH" eventType="editingChanged" id="wOC-1C-9Lf"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -980,6 +986,9 @@ been missed</string>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <action selector="inputĐiChanged:" destination="dn5-Tb-oTH" eventType="editingChanged" id="nwO-he-ytN"/>
+                                                                </connections>
                                                             </textField>
                                                         </subviews>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -1230,7 +1239,7 @@ been missed</string>
                         <outlet property="clearBtn" destination="Ef6-t2-sM9" id="95j-fy-vHY"/>
                         <outlet property="emailTF" destination="TKy-Ly-Qi3" id="MD2-pe-MXH"/>
                         <outlet property="emailTextView" destination="skm-ao-iQU" id="gme-03-pcK"/>
-                        <outlet property="emailerrorTF" destination="3yQ-gK-Wcw" id="7Tj-28-qZf"/>
+                        <outlet property="emailerrorTF" destination="3yQ-gK-Wcw" id="Rdz-sg-xlB"/>
                         <outlet property="errorPW" destination="dz4-mk-jCR" id="qUJ-rY-y7w"/>
                         <outlet property="errorView" destination="0PK-LB-Ukc" id="uET-RC-ILW"/>
                         <outlet property="errorViewHieght" destination="zi6-7p-GYF" id="LD3-zk-6Jc"/>

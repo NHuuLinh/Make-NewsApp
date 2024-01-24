@@ -68,9 +68,6 @@ class LoginViewController: UIViewController, LoginViewControllerDisplay, LoginVi
         emailTextView.layer.cornerRadius = 6
         emailTextView.layer.borderColor = UIColor(red: 0.31, green: 0.29, blue: 0.4, alpha: 1).cgColor
         emailValid()
-//        passwordErorrView.isHidden = true
-//        passwordErrorViewHieght.constant = 0
-//        passwordErorrView.layoutIfNeeded()
         passwordTextView.layer.borderWidth = 2
         passwordTextView.layer.cornerRadius = 6
         passwordTextView.layer.borderColor = UIColor(red: 0.31, green: 0.29, blue: 0.4, alpha: 1).cgColor
